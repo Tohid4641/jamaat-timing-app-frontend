@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .first-color{
+        color: #218ebc;
+    }
+    .first-bg-color{
+        background-color: #218ebc;
+    }
+    .second-color{
+        color: #363636;
+    }
+    .sencond-bg-color{
+        background-color: #363636;
+    }
+}
