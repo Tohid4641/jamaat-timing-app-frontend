@@ -7,6 +7,7 @@ import RegisterMasjid from './pages/RegisterMasjid';
 import { Route, Routes } from 'react-router-dom';
 import UpdateMasjidTiming from './pages/UpdateMasjidTiming';
 import ForgotPassword from './pages/ForgotPassword';
+import UpdateMasjidTimingForAdmin from './pages/UpdateMasjidTimingForAdmin';
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -19,6 +20,7 @@ const App = () => {
         <Route path='/signIn' element={<SignIn />} />
         <Route path='/signUp' element={<SignUp />} />
         <Route path='/updateMasjidTiming' element={<UpdateMasjidTiming />} />
+        <Route path='/updateMasjidTimingAdmin' element={<UpdateMasjidTimingForAdmin />} />
         <Route path='/registerMasjid' element={<RegisterMasjid />} />
         <Route path='/registerMasjid' element={<RegisterMasjid />} />
         <Route path='/forgotPassword' element={<ForgotPassword />} />

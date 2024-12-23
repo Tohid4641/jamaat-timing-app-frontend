@@ -23,6 +23,7 @@ const Navbar = () => {
                     <Link to="/" className="hover:text-gray-400">Home</Link>
                     <Link to="/registerMasjid" className="hover:text-gray-400">Register Masjid</Link>
                     <Link to="/updateMasjidTiming" className="hover:text-gray-400">Update Masjid Timing</Link>
+                    <Link to="/updateMasjidTimingAdmin" className="hover:text-gray-400">Update Masjid Timing Admin</Link>
                     <Link to="/signIn" className="hover:text-gray-400">Sign In</Link>
                     <Link to="/signUp" className="hover:text-gray-400">Sign Up</Link>
                 </div>
