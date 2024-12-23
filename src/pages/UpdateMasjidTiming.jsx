@@ -1,7 +1,7 @@
 const UpdateMasjidTiming = () => {
   return (
     <section id="registerMasjid" className="h-screen-minus-navbar bg-slate-300 flex items-center justify-center">
-      <form id="registerMasjidForm" action="" className="p-8 sencond-bg-color rounded-sm drop-shadow-lg">
+      <form id="registerMasjidForm" encType="multipart/form-data" action="" className="p-8 sencond-bg-color rounded-sm drop-shadow-lg">
         <h1 className="text-white font-bold text-xl">Update Masjid Timing</h1>
         <select
           value="country"
