@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import MasjidTiming from '../components/MasjidTiming.jsx';
 import SelectMosqueSidebar from '../components/SelectMasjidSidebar.jsx';
 
 const Home = ({ isSidebarOpen, onCloseSidebar, onOpenSidebar }) => {
@@ -34,16 +35,7 @@ const Home = ({ isSidebarOpen, onCloseSidebar, onOpenSidebar }) => {
 
             {/* Mosque Timing Section */}
             {selectedMosque && (
-                <div className="h-screen-minus-navbar flex items-center justify-center text-center bg-gray-800 text-white">
-                    <div>
-                        <h1 className="text-3xl font-bold mb-4">{selectedMosque.name}</h1>
-                        <p>Fajr: {selectedMosque.timings.fajr}</p>
-                        <p>Dhuhr: {selectedMosque.timings.dhuhr}</p>
-                        <p>Asr: {selectedMosque.timings.asr}</p>
-                        <p>Maghrib: {selectedMosque.timings.maghrib}</p>
-                        <p>Isha: {selectedMosque.timings.isha}</p>
-                    </div>
-                </div>
+                <MasjidTiming masjid={selectedMosque} />
             )}
 
             {/* Sidebar */}

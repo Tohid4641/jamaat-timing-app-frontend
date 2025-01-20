@@ -15,4 +15,16 @@
     .sencond-bg-color{
         background-color: #363636;
     }
+
 }
+
+.react-clock__mark__number {
+    font-size: 1.2rem; /* Adjust size */
+    font-weight: bold; /* Make the numbers bold */
+    color: #333;       /* Add a visible color */
+    position: absolute;
+}
+
+
+
+  
