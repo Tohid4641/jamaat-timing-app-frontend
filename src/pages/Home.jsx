@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MasjidTiming from '../components/MasjidTiming.jsx';
 import SelectMosqueSidebar from '../components/SelectMasjidSidebar.jsx';
+import { useSelector } from 'react-redux';
 
 const Home = ({ isSidebarOpen, onCloseSidebar, onOpenSidebar }) => {
     const [selectedMosque, setSelectedMosque] = useState();
@@ -16,7 +17,7 @@ const Home = ({ isSidebarOpen, onCloseSidebar, onOpenSidebar }) => {
             {!selectedMosque && (
                 <div
                     className="h-screen-minus-navbar flex flex-col items-center justify-center text-center bg-cover bg-bottom"
-                    style={{ backgroundImage: 'url("/assets/bg.jpg")', opacity:0.7 }}
+                    style={{ backgroundImage: 'url("/assets/bg.jpg")', opacity: 0.7 }}
                 >
                     <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 ">
                         Masjid Jamaat Timing
@@ -25,9 +26,9 @@ const Home = ({ isSidebarOpen, onCloseSidebar, onOpenSidebar }) => {
                         Find your nearby mosque prayer timings.
                     </p>
                     <button id='select-btn' onClick={(e) => {
-                            e.preventDefault();
-                            onOpenSidebar();
-                        }} className='mt-4 p-2 border first-bg-color hover:bg-blue-500 text-white font-bold py-2 px-4 rounded focus:ring-1 drop-shadow-lg'>
+                        e.preventDefault();
+                        onOpenSidebar();
+                    }} className='mt-4 p-2 border first-bg-color hover:bg-blue-500 text-white font-bold py-2 px-4 rounded focus:ring-1 drop-shadow-lg'>
                         Select Masjid
                     </button>
                 </div>

@@ -1,10 +1,25 @@
 // src/components/Navbar.jsx
 import React, { useState } from 'react';
 import logo from '../../public/assets/logo.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeUser } from '../utils/userSlice';
+import { persistor } from '../utils/appStore';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const user = useSelector((state) => state.user.user.userInfo);
+
+    console.log(user);
+    
+
+    const handleLogout = async () => {
+        dispatch(removeUser());
+        await persistor.purge();
+        navigate('/signin');
+    };
 
     return (
         <nav className="bg-gray-800 first-bg-color text-white">
@@ -21,11 +36,24 @@ const Navbar = () => {
                 <Link to="" ></Link>
                 <div className="hidden md:flex space-x-8">
                     <Link to="/" className="hover:text-gray-400">Home</Link>
-                    <Link to="/registerMasjid" className="hover:text-gray-400">Register Masjid</Link>
-                    <Link to="/updateMasjidTiming" className="hover:text-gray-400">Update Masjid Timing</Link>
-                    <Link to="/updateMasjidTimingAdmin" className="hover:text-gray-400">Update Masjid Timing Admin</Link>
+                    {(user?.role === 'admin' || user?.role === 'superAdmin') && (
+                        <>
+                            <Link to="/registerMasjid" className="hover:text-gray-400">Register Masjid</Link>
+                            <Link to="/updateMasjidTiming" className="hover:text-gray-400">Update Masjid Timing</Link>
+                        </>
+
+                    )}
+                    {user?.role === 'superAdmin' && (
+                        <>
+                            <Link to="/updateMasjidTimingAdmin" className="hover:text-gray-400">Update Masjid Timing Admin</Link>
+                        </>
+
+                    )}
                     <Link to="/signIn" className="hover:text-gray-400">Sign In</Link>
                     <Link to="/signUp" className="hover:text-gray-400">Sign Up</Link>
+                    {user && (
+                        <button onClick={() => handleLogout()} className="hover:text-gray-400">Logout</button>
+                    )}
                 </div>
 
                 {/* Mobile Menu Button */}
@@ -54,10 +82,25 @@ const Navbar = () => {
             {isMenuOpen && (
                 <div className="md:hidden bg-gray-700">
                     <Link to="/" className="block px-4 py-2 hover:bg-gray-600">Home</Link>
-                    <Link to="/registerMasjid" className="block px-4 py-2 hover:bg-gray-600">Register Masjid</Link>
-                    <Link to="/updateMasjidTiming" className="block px-4 py-2 hover:text-gray-400">Update Masjid Timing</Link>
+                    {(user?.role === 'admin' || user?.role === 'superAdmin') && (
+                        <>
+                            <Link to="/registerMasjid" className="block px-4 py-2 hover:bg-gray-600">Register Masjid</Link>
+                            <Link to="/updateMasjidTiming" className="block px-4 py-2 hover:text-gray-400">Update Masjid Timing</Link>
+
+                        </>
+                    )}
+                    {user?.role === 'superAdmin' && (
+                        <>
+                            <Link to="/updateMasjidTimingAdmin" className="block px-4 py-2 hover:text-gray-400">Update Masjid Timing Admin</Link>
+                        </>
+
+                    )}
                     <Link to="/signIn" className="block px-4 py-2 hover:bg-gray-600">Sign In</Link>
                     <Link to="/signUp" className="block px-4 py-2 hover:bg-gray-600">Sign Up</Link>
+                    {user && (
+                        <button onClick={() => handleLogout()} className="block px-4 py-2 hover:bg-gray-600">Logout</button>
+                    )}
+
                 </div>
             )}
         </nav>
