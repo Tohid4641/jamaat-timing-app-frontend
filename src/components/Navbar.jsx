@@ -7,6 +7,7 @@ import { removeUser } from '../utils/userSlice';
 import { persistor } from '../utils/appStore';
 import { BASE_URL } from '../utils/constants';
 import axios from 'axios';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -65,6 +66,7 @@ const Navbar = () => {
                     {user && (
                         <button onClick={() => handleLogout()} className="hover:text-gray-400">Logout</button>
                     )}
+                    <ThemeToggle/>
                 </div>
 
                 {/* Mobile Menu Button */}
