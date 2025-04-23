@@ -1,6 +1,6 @@
 // src/components/Navbar.jsx
 import React, { useState } from 'react';
-import logo from '../../public/assets/logo.png';
+import logo from '/assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeUser } from '../utils/userSlice';
