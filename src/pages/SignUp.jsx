@@ -10,10 +10,10 @@ const SignUp = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmpass, setConfirmpass] = useState("")
-  const [error, setError] = useState("Error")
+  const [error, setError] = useState("")
 
   const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // State for confirm password visibility
+  // const [showConfirmPassword, setShowConfirmPassword] = useState(false); // State for confirm password visibility
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -48,7 +48,7 @@ const SignUp = () => {
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-showHidePassRight top-showHidePassTop text-sm text-gray-500"
+            className="absolute right-[4rem] top-[14rem] text-sm text-gray-500"
           >
             {showPassword ? "Hide" : "Show"}
           </button>

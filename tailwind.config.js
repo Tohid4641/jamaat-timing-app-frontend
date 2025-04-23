@@ -7,10 +7,6 @@ export default {
   ],
   theme: {
     extend: {
-      inset:{
-        showHidePassRight:'4rem',
-        showHidePassTop:'14rem',
-      },
       height: {
         'screen-minus-navbar': 'calc(100vh - 64px)',
       },
