@@ -1,14 +1,34 @@
 import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { BASE_URL } from "../utils/constants";
+import axios from "axios";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("")
   const [newPassword, setPassword] = useState("")
   const [oldPassword, setConfirmpass] = useState("")
-  const [showPassword, setShowPassword] = useState(false); 
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError("")
+    try {
+      const res = await axios.patch(`${BASE_URL}/api/auth/forgot-password`, {
+        email: email,
+        newPassword: newPassword,
+        oldPassword: oldPassword
+      }, { withCredentials: true });
+      console.log(res);
+      navigate("/signin")
+    } catch (error) {
+      setError(error?.response?.data?.message)
+    }
+  }
+
   return (
-    <section id="forgotpassword" className="h-screen-minus-navbar bg-slate-300 flex items-center justify-center">
+    <section onSubmit={handleSubmit} id="forgotpassword" className="h-screen-minus-navbar bg-slate-300 flex items-center justify-center">
       <form action="" className="px-12 py-16 sencond-bg-color rounded-md drop-shadow-lg">
         <h1 className="text-white font-bold text-xl text-center">Forgot Password</h1>
         <input type="email" required name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="w-full block p-2 my-4 rounded-md drop-shadow-md focus:outline-none" />
