@@ -6,22 +6,20 @@ import { addUser } from '../utils/userSlice';
 import axios from 'axios';
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("tauhid@gmail.com");
+  const [password, setPassword] = useState("Tauhid@12345");
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-    // setError("")
+    setError("")
     try {
       const res = await axios.post(`${BASE_URL}/api/auth/signin`, {
         email,
         password
       }, { withCredentials: true })
-
-      console.log(res)
 
       dispatch(addUser(res.data.data))
 

@@ -15,8 +15,6 @@ const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const user = useSelector((state) => state.user.user.userInfo);
 
-  console.log(user);
-
   return (
     <>
       <Navbar />

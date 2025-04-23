@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeUser } from '../utils/userSlice';
 import { persistor } from '../utils/appStore';
+import { BASE_URL } from '../utils/constants';
+import axios from 'axios';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,13 +14,18 @@ const Navbar = () => {
     const navigate = useNavigate();
     const user = useSelector((state) => state.user.user.userInfo);
 
-    console.log(user);
-    
-
     const handleLogout = async () => {
-        dispatch(removeUser());
-        await persistor.purge();
-        navigate('/signin');
+        try {
+            const res = await axios.post(`${BASE_URL}/api/auth/logout`, {}, { withCredentials: true });
+            console.log(res);
+
+            dispatch(removeUser());
+            await persistor.purge();
+            navigate('/signin');
+
+        } catch (error) {
+            console.error('Error during logout:', error);
+        }
     };
 
     return (
@@ -49,8 +56,12 @@ const Navbar = () => {
                         </>
 
                     )}
-                    <Link to="/signIn" className="hover:text-gray-400">Sign In</Link>
-                    <Link to="/signUp" className="hover:text-gray-400">Sign Up</Link>
+                    {!user && (
+                        <>
+                            <Link to="/signIn" className="hover:text-gray-400">Sign In</Link>
+                            <Link to="/signUp" className="hover:text-gray-400">Sign Up</Link>
+                        </>
+                    )}
                     {user && (
                         <button onClick={() => handleLogout()} className="hover:text-gray-400">Logout</button>
                     )}
@@ -95,8 +106,13 @@ const Navbar = () => {
                         </>
 
                     )}
-                    <Link to="/signIn" className="block px-4 py-2 hover:bg-gray-600">Sign In</Link>
-                    <Link to="/signUp" className="block px-4 py-2 hover:bg-gray-600">Sign Up</Link>
+                    {!user && (
+                        <>
+                            <Link to="/signIn" className="block px-4 py-2 hover:bg-gray-600">Sign In</Link>
+                            <Link to="/signUp" className="block px-4 py-2 hover:bg-gray-600">Sign Up</Link>
+                        </>
+                    )
+                    }
                     {user && (
                         <button onClick={() => handleLogout()} className="block px-4 py-2 hover:bg-gray-600">Logout</button>
                     )}
