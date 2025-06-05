@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import MasjidTiming from '../components/MasjidTiming.jsx';
-import SelectMosqueSidebar from '../components/SelectMasjidSidebar.jsx';
+import SelectMasjidSidebar from '../components/SelectMasjidSidebar.jsx';
 import { useSelector } from 'react-redux';
 
 const Home = ({ isSidebarOpen, onCloseSidebar, onOpenSidebar }) => {
@@ -41,7 +41,7 @@ const Home = ({ isSidebarOpen, onCloseSidebar, onOpenSidebar }) => {
 
             {/* Sidebar */}
             {isSidebarOpen && (
-                <SelectMosqueSidebar
+                <SelectMasjidSidebar
                     onClose={() => onCloseSidebar()}
                     onSelectMosque={handleSelectMosque}
                 />

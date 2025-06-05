@@ -1,9 +1,9 @@
 import PrayerClocks from "./PrayerClocks";
 
 const MasjidTiming = ({ masjid }) => {
-    function refreshPage(){ 
-        window.location.reload(); 
-    }
+  function refreshPage() {
+    window.location.reload();
+  }
   return (
     <>
       <div className="h-screen-minus-navbar  bg-gray-800 text-white">
